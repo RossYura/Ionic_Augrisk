@@ -1,0 +1,67 @@
+<div style="margin: auto;" class="logo-started">
+  <img [src]="(darkMode) ? '../../../../assets/logos/augurisk-now-white.png' : '../../../../assets/logos/augurisk-now-black.png'" height="60">
+</div>
+
+<ion-content class="ion-padding" class="slides-container">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <img class="slider-img" src="../../../../assets/feature-slides/shield.png">
+      <h1>Stay Safe</h1>
+      <p class="notice">Augurisk Now notifies you when a high threat for Crime or Natural Disaster is detected at your
+        location.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slider-img" src="../../../../assets/feature-slides/covid-19-bw.png">
+      <h1>Covid-19 Risk</h1>
+      <p class="notice">Check your Covid-19 risk score for your location, as well as detailed exposure reports.</p>
+
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slider-img" src="../../../../assets/feature-slides/crime.png">
+      <h1>Crime Risk</h1>
+      <p class="notice">Our proprietary Crime Risk algorithm identifies your risk against Violent Crime in real time.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slider-img" src="../../../../assets/feature-slides/disaster.png">
+      <h1>Natural Hazards</h1>
+      <p class="notice">Check your natural disaster risk exposure to better prepare against potential threats. </p>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button (click)="loginWithFacebook()" color="facebook" expand="block" class="ion-no-margin"  >
+          <ion-icon name="logo-facebook"></ion-icon>
+          <span style="padding-left:7px; padding-top: 2px;">Login with Facebook</span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="medium">
+          <p style="font-size:14px; margin: 2px 0 2px 0"> - or - </p>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button color="tertiary" expand="block" fill="solid" (click)="redirectToSignup()">
+          <span>Signup with Augurisk</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-text color="primary">
+    <p class="ion-text-center">Already have an account? <a routerLink="/auth/login">Tap to login</a></p>
+  </ion-text>
+
+  <ion-text color="medium">
+    <p class="notice ion-text-center">By clicking on Login you certify that you have read and agree to our Terms of
+      Service and Privacy Policy</p>
+  </ion-text>
+
+</ion-content>

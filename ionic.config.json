@@ -1,0 +1,8 @@
+{
+  "name": "augurisk-now",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "07dbe169"
+}

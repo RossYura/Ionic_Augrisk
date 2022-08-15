@@ -1,0 +1,372 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Augurisk Now</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" id="refresher" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentActionSheet()">
+      <ion-icon *ngIf="notifications === 'all'" name="notifications-outline"></ion-icon>
+      <ion-icon *ngIf="notifications === 'highThreats'" name="alert-outline"></ion-icon>
+      <ion-icon *ngIf="notifications === 'disabled'" name="notifications-off-outline"></ion-icon>
+      <!--notifications-off-outline-->
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <ion-card>
+    <!-- 
+    <ion-card-header color="secondary" class="theme-gradient">
+      <div #locationIcon>
+        <h5 class="ion-text-center mt-10 mb-10">
+          <ion-icon name="pin-outline" slot="center"></ion-icon>
+          Street manor, Wilmington
+        </h5>
+      </div>
+      <ion-text *ngIf="lastUpdateTime">
+        <p class="ion-text-center" style="font-size:11px; opacity: 75%;">
+          Last update on {{ lastUpdateTime | date: 'short' }}
+        </p>
+      </ion-text>
+    </ion-card-header>
+    -->
+    <ion-card-content class="pt-10 pb-10">
+      <ion-segment [value]="disabled ? 'disabled' : 'active'" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="active" layout="icon-top" class="pt-10 pb-10">
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+          <ion-label>Active</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="disabled" layout="icon-top" class="pt-10 pb-10">
+
+          <ion-label>Disabled</ion-label>
+          <ion-icon name="stop-circle-outline"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div class="map-wrapper" [hidden]="disabled">
+        <div #mapContainer id="mapContainer"></div>
+      </div>
+
+      <!-- Notice message -->
+      <div *ngIf="(noticeMessage$ | async) as noticeMessage" class="mt-20 mb-10">
+        <ion-list>
+          <ion-item [color]="noticeMessage.type">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">{{noticeMessage.message}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <!-- Not Loading and No Results -->
+      <div *ngIf="!loading && !(summaryMessages$ | async)">
+        <ion-list>
+          <ion-item color="warning">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label>Failed to retrieve data.</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <!-- If Loading -->
+      <div *ngIf="loading" class="flex-center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <div [hidden]="disabled" *ngIf="summaryMessages$ | async as messages">
+    <ion-card>
+      <ion-card-content>
+        <!-- Dashboard Content-->
+        <ion-list class="pb-20">
+
+          <ion-item lines="full" class="pb-10">
+            <ion-icon color="tertiary" [name]="messages.globalIcon" [color]="(messages.globalIcon === 'shield-checkmark-outline') ? 'success' : 'danger'" slot="start"></ion-icon>
+            <ion-label>
+              <h1>{{messages.globalTitle}}</h1>
+            </ion-label>
+          </ion-item>
+
+          <ion-item lines="full" style="font-size:20px">
+            <!-- <ion-icon name="checkmark" color="success" slot="start"></ion-icon> -->
+            <ion-label style="font-size: 14px" text-wrap>{{messages.globalText}}</ion-label>
+          </ion-item>
+
+          <!-- start: NOAA Alerts -->
+          <ion-item lines="full" style="font-size:20px" [hidden]="true">
+            <!-- <ion-icon name="checkmark" color="success" slot="start"></ion-icon> -->
+            <ion-label style="font-size: 14px" text-wrap>
+              <ion-icon color="tertiary" name="information-circle-outline" slot="start"></ion-icon>
+              <b> NOAA Alert:</b> Bla bla bla blabla bla blabla bla blabla bla blabla bla bla
+            </ion-label>
+          </ion-item>
+          <!-- end: NOAA Alerts -->
+
+        </ion-list>
+
+        <div class="flex-center">
+          <ion-button routerLink="/pages/crime-report" size="small" color="primary">Crime Report</ion-button>
+          &nbsp;&nbsp;
+          <ion-button routerLink="/pages/coronavirus" size="small" color="tertiary">Covid-19 Report</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-list class="pb-20">
+          <ion-list-header class="pb-10" color="tertiary">Active assessments</ion-list-header>
+
+          <ion-item *ngIf="allTogglesDeactivated">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label>All assessments have been deactivated. Toggle risks under "Disabled Assessments" to activate
+              them.
+            </ion-label>
+          </ion-item>
+
+          <!-- Crime Risk-->
+          <ng-container *ngIf="isCrimeActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="shield-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('crime-risk')" style="text-decoration: none;">
+                <ion-label color="tertiary">Crime Risk <ion-icon name="help-circle-outline"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle slot="end" name="crimeToggle" [(ngModel)]="isCrimeActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+              <ion-icon [name]="messages.crimeIcon"
+                [color]="(messages.crimeIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px" text-wrap>{{messages.globalText}}
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Air Quality Risk -->
+          <ng-container *ngIf="isAirPollutionActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="leaf-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('air-pollution')" style="text-decoration: none;">
+                <ion-label color="tertiary">Air Pollution <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="airToggle" slot="end" [(ngModel)]="isAirPollutionActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+
+              <ion-icon [name]="messages.airPollutionIcon"
+              [color]="(messages.airPollutionIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px"
+                text-wrap>
+                {{messages.airPollutionText}}
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Storms Risk -->
+          <ng-container *ngIf="isStormActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="thunderstorm-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('storms')" style="text-decoration: none;">
+                <ion-label color="tertiary">Storms <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="stormToggle" slot="end" [(ngModel)]="isStormActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+
+              <ion-icon [name]="messages.stormsIcon" [color]="(messages.stormsIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px" text-wrap>
+                {{ messages.stormsText }} 
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Wildfires -->
+          <ng-container *ngIf="isWildfireActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="flame-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('wildfires')" style="text-decoration: none;">
+                <ion-label color="tertiary">Wildfires <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="wildfireToggle" slot="end" [(ngModel)]="isWildfireActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+
+              <ion-icon [name]="messages.wildfiresIcon" [color]="(messages.wildfiresIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label  style="font-size: 14px" text-wrap>
+                {{messages.wildfiresText}}
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Coastal Flooding Risk -->
+          <ng-container *ngIf="isCoastalFloodActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="water-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('flood-risk')" style="text-decoration: none;">
+                <ion-label color="tertiary">Flood Risk <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="floodToggle" slot="end" [(ngModel)]="isCoastalFloodActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+              <ion-icon [name]="messages.floodIcon"
+              [color]="(messages.floodIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px" text-wrap>
+                {{messages.floodText}}
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Earthquake Risk -->
+          <ng-container *ngIf="isEarthquakeActive">
+            <ion-item color="light" lines="full">
+              <ion-icon name="pulse-outline" color="tertiary" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('earthquakes')" style="text-decoration: none;">
+                <ion-label color="tertiary">Earthquakes <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="earthToggle" slot="end" [(ngModel)]="isEarthquakeActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+
+              <ion-icon [name]="messages.earthquakesIcon" [color]="(messages.earthquakesIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px"
+                text-wrap>{{messages.earthquakesText}}</ion-label>
+            </ion-item>
+          </ng-container>
+
+          <!-- Nuclear Radiation -->
+          <ng-container *ngIf="isNuclearActive">
+            <ion-item color="light" lines="full">
+              <ion-icon color="tertiary" name="disc-outline" slot="start"></ion-icon>
+              <a href="javascript:;" (click)="presentModal('nuclear')" style="text-decoration: none;">
+                <ion-label color="tertiary">Nuclear <ion-icon name="information-circle"></ion-icon>
+                </ion-label>
+              </a>
+              <ion-toggle name="nuclearToggle" slot="end" [(ngModel)]="isNuclearActive"
+                (ionChange)="updateTogglePreferences($event)"></ion-toggle>
+            </ion-item>
+            <ion-item lines="full" style="font-size:20px">
+              <ion-icon [name]="messages.nuclearIcon" [color]="(messages.nuclearIcon == 'checkmark') ? 'success' : 'danger'" slot="start"></ion-icon>
+              <ion-label style="font-size: 14px" text-wrap>
+                {{messages.nuclearText}}
+              </ion-label>
+            </ion-item>
+          </ng-container>
+
+        </ion-list>
+
+        <ion-list>
+          <ion-list-header class="pb-10" color="tertiary">Disabled assessments</ion-list-header>
+          <ion-item *ngIf="allTogglesActivated">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label>All risks are active.
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="!isCrimeActive">
+            <ion-icon name="shield-outline" slot="start"></ion-icon>
+            <ion-label>Crime Risk <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="crimeToggleDisabled" color="primary" slot="end" [(ngModel)]="isCrimeActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isAirPollutionActive">
+            <ion-icon name="leaf-outline" slot="start"></ion-icon>
+            <ion-label>Air Pollution <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="airToggleDisabled" color="primary" slot="end" [(ngModel)]="isAirPollutionActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isStormActive">
+            <ion-icon name="thunderstorm-outline" slot="start"></ion-icon>
+            <ion-label>Storms <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="stormToggleDisabled" color="primary" slot="end" [(ngModel)]="isStormActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isWildfireActive">
+            <ion-icon name="flame-outline" slot="start"></ion-icon>
+            <ion-label>Wildfires <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="wildfireToggleDisabled" color="primary" slot="end" [(ngModel)]="isWildfireActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isCoastalFloodActive">
+            <ion-icon name="water-outline" slot="start"></ion-icon>
+            <ion-label>Flood Risk <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="floodToggleDisabled" color="primary" slot="end" [(ngModel)]="isCoastalFloodActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isEarthquakeActive">
+            <ion-icon name="pulse-outline" slot="start"></ion-icon>
+            <ion-label>Earthquakes <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="earthToggleDisabled" color="primary" slot="end" [(ngModel)]="isEarthquakeActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!isNuclearActive">
+            <ion-icon name="disc-outline" slot="start"></ion-icon>
+            <ion-label>Nuclear <ion-icon name="information-circle"></ion-icon>
+            </ion-label>
+            <ion-toggle name="nuclearToggleDisabled" color="primary" slot="end" [(ngModel)]="isNuclearActive"
+              (ionChange)="updateTogglePreferences($event)">
+            </ion-toggle>
+          </ion-item>
+        </ion-list>
+
+        <div class="pt-20" *ngIf="lastUpdateTime">
+          <p class="tip ion-text-center" style="font-size:11px; opacity: 75%;">
+            Last update on {{ lastUpdateTime | date: 'short' }}
+          </p>
+        </div>
+        <div>
+          <p class="tip ion-text-center pb-10 pt-10"> <a routerLink="/pages/contact">Send your feedback</a> - <a
+              routerLink="/pages/legal/">Legal</a></p>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- If Disabled -->
+  <ion-card *ngIf="disabled">
+    <ion-card-content>
+      <ion-text class="ion-text-center pb-20">
+        <h1 class="pb-20">Currently disabled.</h1>
+      </ion-text>
+      <ion-text class="ion-text-center pt-20">
+        <h3>Augurisk Now is currently disabled. Tap on <b>Active</b> to activate.</h3>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

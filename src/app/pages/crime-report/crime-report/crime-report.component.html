@@ -1,0 +1,327 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Crime Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-list *ngIf="riskScore$ | async as riskScore">
+    <ion-item>
+      <ion-label>Crime Risk Score: </ion-label>
+      <ion-badge [color]="returnRiskScoreColor(riskScore)" slot="end">{{riskScoreText$ | async}}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ion-refresher slot="fixed" id="refresher" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <!-- Notice message -->
+  <div *ngIf="(noticeMessage$ | async) as noticeMessage" class="mt-20 mb-10">
+    <ion-list>
+      <ion-item [color]="noticeMessage.type">
+        <ion-icon name="information-circle" slot="start"></ion-icon>
+        <ion-label class="ion-text-wrap">{{noticeMessage.message}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Skeleton during loading -->
+  <div id="skeleton" *ngIf="(loading$ | async)">
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div [hidden]="loading$ | async">
+    <!-- Violent Crimes -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            <ion-icon slot="start" name="walk-outline"></ion-icon> Violent Crimes
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar class="mb-10 mt-10" [color]="violentCrimeColor$ | async" [value]="(violentCrimeScore$ | async) / 100">
+        </ion-progress-bar>
+        <ion-label>
+          <ion-text [color]="violentCrimeColor">
+            <h1 style="display:inline">{{violentCrimeNumber$ | async}}</h1>
+          </ion-text> yearly violent crimes were {{predictedOrObs$ | async}} in your area
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Property Crimes -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            <ion-icon slot="start" name="home-outline"></ion-icon> Property Crimes
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar class="mb-10 mt-10" [color]="propertyCrimeColor$ | async" [value]="(propertyCrimeScore$ | async) / 100">
+        </ion-progress-bar>
+        <ion-label>
+          <ion-text [color]="propertyCrimeColor">
+            <h1 style="display:inline">{{propertyCrimeNumber$ | async}}</h1>
+          </ion-text> yearly property crimes were {{predictedOrObs$ | async}} in your area
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Nearby Police Dep -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            <ion-icon slot="start" name="shield-outline"></ion-icon> Police Departments
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar class="mb-10 mt-10" [color]="policeDepColor$ | async" [value]="(policeDepScore$ | async) / 100">
+        </ion-progress-bar>
+        <ion-label> There are
+          <ion-text [color]="policeDepColor">
+            <h1 style="display:inline">{{policeDepNearby$ | async}}</h1>
+          </ion-text> police departments within a few miles
+        </ion-label>
+        <div class="mt-10">
+          <ion-label>
+            <ion-text class="medium"><span class="tip">
+                <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+                To find nearby police departments, <a>click here</a>.
+              </span></ion-text>
+            <!-- tip ion-text-center -->
+          </ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <!-- Vehicule Theft  -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            <ion-icon slot="start" name="car-sport-outline"></ion-icon> Motor Vehicle Theft
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar class="mb-10 mt-10" [color]="MVTColor$ | async" [value]="(motorVehiculeTheftScore$ | async) / 100">
+        </ion-progress-bar>
+        <ion-label>
+          <ion-text [color]="MVTColor$ | async">
+            <h1 style="display:inline">{{MVTNumber$ | async}}</h1>
+          </ion-text> yearly motor vehicule thefts were {{predictedOrObs$ | async}} in your area
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+    <!-- Vandalism -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            <ion-icon slot="start" name="flame-outline"></ion-icon> Vandalism
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar class="mb-10 mt-10" [color]="vandalismColor$ | async" [value]="(vandalismScore$ | async) / 100">
+        </ion-progress-bar>
+        <ion-label>
+          <ion-text [color]="vandalismColor$ | async">
+            <h1 style="display:inline">{{vandalismNumber$ | async}}</h1>
+          </ion-text> yearly vandalism crimes were {{predictedOrObs$ | async}} in your area
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+    <!-- Chart: Cases by bounty for 10 days -->
+    <ion-card color="tertiary">
+      <ion-card-header>
+        <ion-card-title>
+          Other Insights
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="pb-20">
+            <ion-col size="6">
+              <ion-text class="ion-text-center">
+                <h1>
+                  <ion-icon name="people"></ion-icon>
+                </h1>
+                <h2 class="pb-10">
+                  Population Density
+                </h2>
+                <h2>
+                  {{populationDensity$ | async}} habitants /km²
+                </h2>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="ion-text-center">
+                <h1>
+                  <ion-icon name="briefcase"></ion-icon>
+                </h1>
+                <h2 class="pb-10">Unemployment Rate</h2>
+                <h2>
+                  {{percentUnemployed$ | async}}%
+                </h2>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-text class="ion-text-center">
+                <h1>
+                  <ion-icon name="layers"></ion-icon>
+                </h1>
+                <h2 class="pb-10">Poverty Rate</h2>
+                <h2>
+                  {{povertyRate$ | async}}%
+                </h2>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="ion-text-center">
+                <h1>
+                  <ion-icon name="cash"></ion-icon>
+                </h1>
+                <h2 class="pb-10">Median Household Income</h2>
+                <h2>${{medianHouseholdIncome$ | async}}</h2>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-text>
+    <p class="tip ion-text-center mb-20">
+
+      Crime numbers were predicted by our machine learning algorithm between 2014 and 2018. In order to predict crime
+      occurrences where data is unavailable, our algorithm uses over 180 socio-economic, demographic, climatic, spatial,
+      and law enforcement predictors. Its accuracy against crime data collected by the Open Crime Database is of
+      79%.<br>
+      <br>References: <br>
+      Ashby, M.P.J. (2019): Studying Crime and Place with the Crime Open Database. Research Data Journal for the
+      Humanities and Social Sciences 4(1), pp. 65-80.<br>
+      U.S. Census Bureau: American Community Survey, 2014-2018 5-Year Estimates.<br>
+      Fick. S.E., and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution climate surfaces for global land
+      areas. International Journal of Climatology 37(12): 4302-4315.<br>
+      For more information, please visit the Crime section of the <a href="https://app.augurisk.com"
+        target="_blank">Augurisk Web App.</a>
+    </p>
+  </ion-text>
+</ion-content>

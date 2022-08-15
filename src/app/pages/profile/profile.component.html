@@ -1,0 +1,107 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Your Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list class="pb-20 mb-20">
+      <ion-item lines="full">
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>
+          Toggle Dark Theme
+        </ion-label>
+        <ion-toggle slot="end" [checked]="darkMode" [disabled]="loading$ | async" (ionChange)="checkDarkMode($event)"></ion-toggle>
+      </ion-item>
+
+      <!--
+    <ion-item class="pb-10">Distance Covered
+
+      <ion-note slot="end">1mi</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-range min="1" max="5" step="2" value="2">
+        <ion-icon size="small" slot="start" name="locate"></ion-icon>
+        <ion-icon slot="end" name="locate"></ion-icon>
+      </ion-range>
+    </ion-item>
+-->
+
+      <!-- Notice message -->
+          <ion-item *ngIf="(noticeMessage$ | async) as noticeMessage" [color]="noticeMessage.type">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label class="ion-text-wrap">{{noticeMessage.message}}</ion-label>
+          </ion-item>
+
+                <!-- If Loading -->
+      <div *ngIf="loading$ | async" class="flex-center pt-20">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+
+      <ion-list-header class="pb-10 pt-20"><b>Profile</b></ion-list-header>
+
+      <!-- Inputs with labels -->
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="email" type="text" disabled></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input [(ngModel)]="name" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-list-header class="pt-20"><b>Notifications</b></ion-list-header>
+      <ion-radio-group [(ngModel)]="notifications">
+        <ion-list-header>
+          <ion-label style="font-size:15px">Push Notifications</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-icon icon="notifications-circle" slot="start"></ion-icon>
+          <ion-label>All notifications</ion-label>
+          <ion-radio slot="end" value="all"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon icon="alert-circle" slot="start"></ion-icon>
+          <ion-label>High threat only</ion-label>
+          <ion-radio slot="end" value="highThreats"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon icon="notifications-off-circle" slot="start"></ion-icon>
+          <ion-label>Disable notifications</ion-label>
+          <ion-radio slot="end" value="disabled"></ion-radio>
+        </ion-item>
+
+        <ion-list-header>
+          <ion-label style="font-size:15px">Email Notifications</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-icon name="newspaper" slot="start"></ion-icon>
+          <ion-label>Receive news and offers</ion-label>
+          <ion-toggle slot="end" [(ngModel)]="emailNotifications"></ion-toggle>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+
+    <div class="flex-center pb-10">
+      <ion-button style="margin:0 10px 10px 10px" color="primary" (click)="submitForm()">Save</ion-button>
+      <ion-button style="margin:0 10px 10px 10px" color="secondary" (click)="logout()">Logout</ion-button>
+    </div>
+
+    <div class="flex-center pb-20"><a>Delete</a>&nbsp; account </div>
+</ion-content>

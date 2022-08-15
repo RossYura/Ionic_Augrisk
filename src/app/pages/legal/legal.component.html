@@ -1,0 +1,812 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Legal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment value="terms" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="terms" layout="icon-top">
+
+      <ion-icon name="document-text-outline"></ion-icon>
+      <ion-label>Terms of Use</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="privacy" layout="icon-top">
+
+      <ion-label>Privacy Policy</ion-label>
+
+      <ion-icon name="shield-checkmark-outline"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+
+    <ion-card class="pt-20" *ngIf="currentPage=='terms'">
+      <ion-card-header>
+        <ion-card-title>Terms of Service</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-text>
+          <h2 class="pb-30 pt-30">1. THESE TERMS</h2>
+        </ion-text>
+        <ion-text>
+          <p class="pb-50">These are terms and conditions (the “Terms”) controlling the use of our site
+            augurisk.com (the “Site”) through which we supply services and digital content to you. Please read
+            these terms carefully. These terms tell you who we are, how we will provide products and services to
+            you, how you and we may change or end the contract, what to do if there is a problem and other
+            important information. If you think that there is a mistake in these terms, please contact us to
+            discuss. You understand that by using our Site, you agree to these terms. Augurisk may modify these
+            Terms by providing notice to you. <b>IF YOU DON’T AGREE WITH ANY PROVISION OF THESE TERMS, YOU MAY
+              NOT
+              ACCESS THE SITE.</b></p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">2. INFORMATION ABOUT US AND HOW TO CONTACT US.</h2>
+        </ion-text>
+        <ion-text>
+          <p class="mb-50"><b>2.1 Who we are.</b> We are Augurisk, Inc., a Delaware corporation (“Augurisk”,
+            “our”,
+            “us” or “we”), the operator of augurisk.com (the “Site”). Our company mailing address is 2810 N
+            Church St #56347, Wilmington Delaware 19802-4447 United States. Augurisk provides its clients with
+            access to a suite of natural hazard and societal risk assessment tools including tools for research
+            and analysis, audits, reporting and analytics, tracking of alerts news and research content
+            (collectively, the “Services”).
+            <br><br>
+            <b>2.2 How to contact us.</b> You can contact us by telephoning our customer service team at (001)
+            8006930381 or by writing to us contact@augurisk.com or Augurisk, Inc, 2810 N Church St #56347,
+            Wilmington Delaware 19802-4447 United States.
+            <br><br>
+            <b>2.3 How we may contact you.</b> If we have to contact you we will do so by telephone or by
+            writing to
+            you at the email address or postal address you provide to us.</p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">3. OUR CONTRACT WITH YOU.</h2>
+        </ion-text>
+        <ion-text>
+          <p>3.1 Access or Use. These Terms govern your use of the Site and the Services, both as a visitor and
+            as a registered user (a “Subscriber”) (each visitor and each registered user is referred to
+            generally for purposes of these Terms as a “Client User” or “You”); the term Client User or the term
+            You includes Subscribers who pay for access to the Services and visitors who browse the publicly
+            available portions of our Site. BY ACCESSING OR USING THE SITE, AND/OR BY REGISTERING AND/OR
+            SUBSCRIBING WITH US, YOU AGREE TO THESE TERMS OF SERVICE. You consent to the information practices
+            disclosed in our Privacy Policy and our Cookies Policy which are incorporated herein by reference,
+            and you consent to resolve any disputes with Us in the State of Delaware pursuant to the terms set
+            forth herein.
+            <br><br>
+            Please note that we offer the Site "AS IS" and without warranties. If you are registering an account
+            or using the Site on behalf of an individual or entity other than yourself, you represent that you
+            are authorized by such individual or entity to accept these Terms on such individual's or entity's
+            behalf.
+            3.2 Content and Services. The Site provides You with a suite of natural hazard and societal risk
+            assessment tools, which includes tools for research and analysis, audits, reporting and analytics,
+            tracking of alerts, news and research content, collectively, the Services. Among other things, the
+            Services enable Client Users to (a) generate a hazard or societal risk assessment for their
+            properties (the “Projects”), (b) obtain information related to their properties’ risk assessments,
+            (c) generate reports, benchmarks, and analytics on their projects, and (d) access additional
+            resources, including but not limited to, an online platform and its application programming
+            interface ("API").
+            When you subscribe as a Client User, you authorize the use and disclosure of your personal and legal
+            information pursuant to the terms of our Privacy Policy for purposes of allowing us to provide the
+            Services and as otherwise disclosed in our Privacy Policy available at
+            www.augurisk.com/privacypolicy.
+            <br> <br>
+            3.2.1 Technical Support. Augurisk shall provide technical support to you as necessary for you to
+            access our Services as a Client User.
+            <br><br>
+            3.2.2 Term, Price and Payment. Your access to the Services commences when you pay the fee resulting
+            from your order as set forth on our Site’s payment page and become a Client User. Augurisk uses a
+            third-party payment processor and does not have access to your payment information and does not
+            store details of client payments.
+            <br><br>
+            3.3 Right to Use Services. Subject to all the terms and conditions of these Terms, we will provide
+            Client Users with a non-exclusive, non-transferable, non-sublicensable right to access to the
+            Services and the Site solely as set forth in these Terms and in the manner set forth on the Site,
+            through the Internet, solely for the Client User’s internal use. In the event of any conflict
+            between these Terms and the Site, these Terms shall prevail. Any use of the Services other than as
+            set forth in these Terms and any policies referenced herein will result in suspension or revocation
+            of your use privileges in our sole discretion.
+            <br><br>
+            3.4 Additional Services. Unless explicitly stated otherwise, any new features that improve or
+            enhance the currently offered Services, including the release of new Augurisk services, shall be
+            subject to these Terms.
+            <br><br>
+            3.5 3rd Party Services. Augurisk reserves the right to use third-party service providers in the
+            provisions of part or all of the Services including, but not limited to, information and
+            communication services, map and cartography services, analytics services, hosting providers, payment
+            processing services, internet advertising platforms, invoicing services, advertising service
+            providers and platforms. Where any of the aforementioned services are provided by third parties, the
+            Subscriber may be subject to such third party’s terms and conditions. We accept no responsibility
+            for services provided by any third party.
+            <br><br>
+            3.6 Suspension or Termination of Services. Notwithstanding anything stated or implied to the
+            contrary in these Terms, we may at any time, without derogating from our other rights under these
+            Terms, Applicable law or otherwise, terminate or suspend any or all of the Services, effective
+            immediately upon issuance of a written notice. Such suspension or termination may also apply, as the
+            case may be, to specific jurisdiction, lines of business and otherwise or to a specific customer or
+            a group of Subscribers. Notwithstanding the foregoing, solely with respect to Client Users of paid
+            Services, whenever reasonably possible, such Client Users may be given up to thirty (30) days after
+            notice of suspension or termination of their Client User account to back-up the data stored in their
+            account before it may be removed entirely from our servers.
+            Augurisk’s direct competitors are prohibited from accessing the software and/or services provided by
+            Augurisk, except with Augurisk’s prior express written consent. In addition, the software and
+            services may not be accessed for the exclusive purpose of collecting or monitoring performance,
+            data, or functionality, or for any other benchmarking or competitive purposes.
+            <br><br>
+            3.7 Access to Systems. Access, if any, to the Augurisk’s computers, telecommunication or other
+            information systems (“Systems”), including but not limited to local machines and machines that are
+            hosted at 3rd party hosting companies, is limited to those specific systems, time periods, and
+            personnel as are reasonably needed to effect the purpose these Terms.
+            <br><br>
+            3.8 Access to User Account. User gives Augurisk permission to view data and take actions within
+            Customer’s Augurisk account for the purpose of delivering the Services, including support,
+            maintenance, and onboarding, as well as to make design choices relating to the technical
+            administration of the Services, for example, how the Service backs up data to keep it safe. User may
+            request Augurisk to perform actions within Client User’s Augurisk account, and in doing so hereby
+            grants Augurisk the limited permission to view, create, and modify Client User’s Data in Client
+            User’s Augurisk account to fulfill the request, with no limitations. While not limited to the
+            following, additional examples of the permissions encompassed in this section are: viewing or acting
+            within an account to reproduce an issue or bug, creating new projects, easing the onboarding
+            process, merging metadata, exporting data to produce a custom report, etc.
+            <br><br>
+            3.9 Your Responsibilities. You are solely responsible for your subscription/account and the activity
+            that occurs while signed into or while using your subscription/account. If you sign up for the
+            Services, you will create a personalized account which includes a unique username and a password to
+            access the Services and to receive messages from Augurisk. You are responsible for maintaining the
+            security of your account, and you are fully responsible for all activities that occur under the
+            account and any other actions taken in connection with the account. Augurisk will not be responsible
+            for any liabilities, losses, or damages arising from the unauthorized use of your computer (or any
+            computing device) or your account. Specifically, you are responsible and liable for all uses of the
+            Service resulting from access provided by you, directly or indirectly, whether such access or use is
+            permitted by or in violation of these Terms. Without limiting the generality of the foregoing, you
+            are responsible for all acts and omissions of employees and agents of Client User that are
+            authorized to use the software (“Authorized Users”), and any act or omission by an Authorized User
+            that would constitute a breach of these Terms if performed by Client User. Client User shall make
+            all Authorized Users aware of these Terms as applicable to such Authorized User’s use of the
+            Services, and shall cause Authorized Users to comply with such provisions.
+            <br><br>
+            3.10 Your Use and Restrictions. You are responsible for all use of the Site and for all use of your
+            credentials, including use by others to whom you give your credentials. You may use the Site and the
+            Services for lawful purposes only. You may not use the Site in any manner that could damage,
+            disable, overburden, or impair our servers or networks, or interfere with any other party’s use and
+            enjoyment of the Site or the Services. You may not attempt to gain unauthorized access to any of the
+            Services, user accounts, or computer systems or networks, through hacking, password mining or any
+            other means. Without limiting any of the foregoing, you agree that you shall not (and you agree not
+            to allow any third party to use your credentials to): copy, modify, adapt, translate, or reverse
+            engineer any portion of the Site, its content or materials and/or the Services; remove any
+            copyright, trademark or other proprietary rights notices contained in or on the Site and/or the
+            Services or in or on any content or other material obtained via the Site and/or the Services; use
+            any robot, spider, site search/retrieval application, or other automated device, process or means to
+            access, retrieve or index any portion of the Site and/or the Services; reformat or frame any portion
+            of the web pages that are part of the Site and/or the Services; create user accounts by automated
+            means or under false or fraudulent pretenses; collect or store personal data about other users in
+            connection with the prohibited activities described in this paragraph; or use any means, including
+            software means, to conduct web scraping of any portion of the Site, its content or materials and/or
+            the Services.
+            <br><br>
+            3.11 Indemnification. You agree that Augurisk is not responsible for any harm that this Site or the
+            Service may cause. Upon request by us, you agree to indemnify, defend and hold us, our employees,
+            contractors, officers, directors, agents, parent, other affiliated companies, suppliers, vendors,
+            contractors, agents, successors, and assigns harmless from and against any and all liabilities,
+            claims, demands and expenses, including attorney’s fees, made by any third party that arise from or
+            are related to (a) your access to the Site, (b) your use of the Services, or (c) the violation of
+            these Terms or any intellectual property or other right of any person or entity, by you or any third
+            party using your credentials.
+            <br><br>
+            3.12 Data. Augurisk is not responsible for any loss of data resulting from accidental or deliberate
+            deletion, network or system outages, file corruption, or any other reasons. We also reserve the
+            right to deny service to offenders of these guidelines and to terminate or deny service to anyone
+            for any reason or no reason.
+            <br><br>
+            3.13 Electronic Notices and Agreements. Your use of this Site and/or registering for the Site or the
+            Services constitutes your electronic signature to these Terms, which includes our Privacy and Cookie
+            Policies, and your consent to enter into agreements with us.
+            <br><br>3.14 Changes. We may change these Terms at any time, as we reasonably deem appropriate. Upon
+            any change in these Terms, we will post the amended agreement on the Site and the date such amended
+            agreement is effective. Your continued use of the Site and/or the Services following such posting
+            shall constitute your affirmative acknowledgement of the Terms, the modification, and agreement to
+            abide and be bound by the Terms, as amended. If at any time you choose not to accept these Terms,
+            including following any such modifications hereto, then you may not use the Site.
+            <br><br>3.15 Copyright and Limited Use. The Site and its entire contents, features and functionality
+            (including but not limited to all information, software, text, displays, images, video and audio,
+            and the design, selection and arrangement thereof), are owned by Augurisk, its licensors or other
+            providers of such material and are protected by United States and international copyright,
+            trademark, patent, trade secret and other intellectual property or proprietary rights laws.
+            These Terms permit you to use the Site and the Services. You must not reproduce, distribute, modify,
+            create derivative works of, publicly display, publicly perform, republish, download, store or
+            transmit any portion of our Site, except as follows:
+            Your computer may temporarily store copies of such materials in RAM incidental to your accessing and
+            viewing those materials.
+            You may store files that are automatically cached by your Web browser for display enhancement
+            purposes.
+            If we provide social media features with certain content, you may take such actions as are enabled
+            by such features.
+            You must not:<br>
+            Modify copies of any materials from this Site.<br>
+            Use any illustrations, photographs, video or audio sequences or any graphics separately from the
+            accompanying text.<br>
+            Delete or alter any copyright, trademark or other proprietary rights notices from copies of
+            materials from this Site.<br>
+            If you wish to make any use of material on the Site other than that set out in this section, please
+            address your request 1to: contact@augurisk.com<br>
+            If you provide any other person with access to any part of the Site in breach of the Terms, your
+            right to use the Site and the Services will cease immediately and you must, at our option, return or
+            destroy any copies of the materials you have made. All rights to the Site and the Services not
+            expressly granted are reserved by Augurisk. Any use of the Site or the Services not expressly
+            permitted by these Terms is a breach of these Terms and may violate copyright, trademark and other
+            laws.<br>
+            <br><br>
+            3.16 Trademarks. Augurisk’s name, logo and all related names, logos, product and service names,
+            designs and slogans are trademarks of Augurisk or its affiliates or licensors. You must not use such
+            marks without the prior written permission of Augurisk. All other names, logos, product and service
+            names, designs and slogans on this Site are the trademarks of their respective owners.<br>
+            <br><br>
+            3.17 Disclaimer. If you believe that any material on the Site infringes upon any copyright, which
+            you own or control, please contact Augurisk at: contact@augurisk.com<br>
+            <br><br>
+            3.18 Links from the Site. If the Site contains links to other sites and resources provided by third
+            parties, these links are provided for your convenience only. This includes links contained in
+            advertisements, including banner advertisements and sponsored links. We have no control over the
+            contents of those sites or resources and accept no responsibility for them or for any loss or damage
+            that may arise from your use of them. If you decide to access any of the third party websites linked
+            to this Site, you do so entirely at your own risk and subject to the terms and conditions of use for
+            such websites.<br>
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">4. REGISTRATION AND ACCOUNT</h2>
+        </ion-text>
+        <ion-text>
+          <p>4.1 Use of the Services. You may use the Services either as a registered or as an unregistered
+            user. However, you may not use the Services, either as a registered or an unregistered user if you
+            are not of legal age to enter into a contract in your jurisdiction or if you don’t have the
+            authority to accept these Terms. Please do not attempt to register for the Services or send any
+            information about yourself to us, including your name, address, telephone number, or email address
+            if you are under 18. If it comes to our attention that we have collected personal information from
+            anyone under age 18 without verification of parental consent, we will delete that information as
+            quickly as possible. Registering as a Client User provides you with the additional benefits over
+            using the Services in a visitor (non-registered) capacity, including but not limited to, access to
+            additional services.<br><br>
+            4.2 User Representations. By using the Services, you represent and warrant that (a) all information
+            you submit during registration is truthful and accurate; (b) you will maintain the accuracy of such
+            information; (c) your use of the Services does not violate any applicable law or regulation; and,
+            (d) you are at least 18 years of age and have the capacity and authority to accept and be subject to
+            these Terms and the policies referenced herein;<br><br>
+            4.3 Acceptance. By using the Services, you accept these Terms and you fully authorize us to obtain,
+            process, use, store, and transmit your personal data in accordance with our Privacy Policy, which
+            are incorporated herein by reference.<br><br>
+            4.4 Registration. To register as a Client User, you have to create a user account on the Site by
+            following the registration process and instructions set forth therein.<br><br>
+            4.5 Billing. In order to access certain paid features of the Services, you will be required to
+            provide billing details. As a registered Client User, you agree to notify us promptly of any changes
+            to your billing details, and update your user account information accordingly. <br><br>
+            4.6 Login, Password and API secret Key. You are solely and fully responsible for the secure storage
+            of all of your Augurisk user accounts, including, but not limited to, your Client User login,
+            password and API secret key. The API secret key is a secure access token provided by Augurisk that
+            provides you access to your User account (the “API Key”), and some of its services. You agree not to
+            share your Secret API Key with any third parties and are solely responsible for all repercussions of
+            sharing, losing or compromising your secret key.<br><br>
+            4.7 User Account Responsibilities. You are responsible for all of the following with respect to your
+            use of the Services:<br><br>
+            4.7.1 obtaining access to the Services, and that access may involve third-party fees (such as
+            Internet service provider or airtime charges); <br><br>
+            4.7.2 maintaining the security of your User account and all of the activity that occurs on your
+            Client User account;<br><br>
+            4.7.3 maintaining accurate account information at all times, including a valid email address and
+            billing information and updating such information as necessary; and<br><br>
+            4.7.4 obtaining and maintaining all equipment necessary to access the Services.<br><br>
+            4.8 Client User Content. You confirm you (i) own all rights in and to any content uploaded or
+            provided by you, or imported, copied or uploaded by Augurisk for you (“User Content”), including any
+            images, designs, videos, animations, audio files, fonts, logos, code, illustrations, compositions,
+            artworks, interfaces, usernames, information you provide for the purpose of creating a subdomain
+            name, text, literary works and any other materials (“Content”), or otherwise have (and will continue
+            to have) the full power, title, licenses, consents and authority, in and to the User Content, as
+            necessary to legally access to, import, copy, use, publish, transfer or license such User Content,
+            by you and us or any of our affiliates; (ii) you have (and will maintain) the full power, title,
+            licenses, consents and authority to allow us to access any websites, web pages and/or other online
+            services, for the purpose of importing, copying, displaying, uploading, transmitting and/or
+            otherwise using, your User Content; (iii) the User Content is and must remain true, current,
+            accurate, non-infringing upon any third party rights, and in no way unlawful for you to upload,
+            import, copy, possess, post, transmit, display or otherwise use, in the country in which you or your
+            User Platform’s visitors and users (“End Users”) reside, or for Augurisk and/or your End Users to
+            access, import, copy, upload, use or possess in connection with the Augurisk Services; (iv) you have
+            obtained all consents and permissions required under all applicable laws, regarding the posting,
+            transmission and publication of any personal information and/or image or likeness of any person,
+            entity or property which is part of the User Content, and you will adhere to all laws applicable
+            thereto. (v) Be solely responsible and liable with respect to any of the uses of the Augurisk
+            Services which occur under your User Account, and for any of your User Content (including for any
+            consequences of accessing, importing, uploading, copying, using or publishing such User Content ;
+            (vi) you shall own all intellectual property pertaining to your User Content and to any other
+            materials created by you, including to any designs, images, animations, videos, audio files, fonts,
+            logos, illustrations, compositions, artworks, code, interfaces, text and literary works. Augurisk
+            does not claim ownership rights on your content. For the sole purpose of granting you the service,
+            You know and agree that we will need to access, upload and/or copy your User Content to our
+            platform, including cloud services and CDN’s, to display, to duplicate for backup and perform any
+            other required actions and/or uses required to perform our services, as we deem fit. This in no way
+            gives you any right over Augurisk’s Intellectual Property. All User Content does and will comply
+            with these Terms and We are not responsible, or liable to any third party, for the content or
+            accuracy of any User Content posted by you or any other user of the Site.. <br><br>
+            4.9 Compliance with Laws. The Client User represents, warrants and covenants that the User and its
+            employees will not produce content or otherwise use the Service in a manner that (i) infringes or
+            violates the intellectual property rights or property rights, rights of publicity or privacy, or
+            other rights of any third party; (ii) violates any law, statute, ordinance or regulation; (iii) is
+            harmful, fraudulent, deceptive, threatening, abusive, harassing, tortious, defamatory, vulgar,
+            obscene, libelous, or otherwise objectionable; or, (iv) contains a virus or other harmful computer
+            file, or program. Further, the Client User represents, warrants and covenants that the Client User,
+            in performance of its obligations and/or exercise of its rights pursuant to these Terms , will
+            comply with all applicable laws and regulations. The Client User further acknowledges that Client
+            User is responsible for all employee activity in connection with use of the Client User’s Services
+            and that fraudulent, abusive, or otherwise illegal activity is grounds for termination of the
+            Services. <br><br>
+            4.10 Prohibited Uses. You are expressly prohibited from using the Services for any of the following
+            purposes or in any of the following ways:<br><br>
+            Illegal Purposes. You may not use the Services for any illegal or unauthorized purpose, including in
+            any way that violates copyright or other applicable laws.<br>
+            Tampering. You will not upload or transmit viruses, worms or any other destructive code. You may not
+            use the Services in a way that is detrimental to the access or use of the Services by anyone else or
+            to the operation of the Services. The restriction in this Section applies to any use that interferes
+            or attempts to interfere with the normal operations of the Services, including by deleting, hacking,
+            augmenting or altering the Services.<br>
+            Permission Required. You may not, without our prior written permission and, solely with respect to
+            lease, resale and sublicense, except as may be specifically allowed under your paid subscription
+            plan, (i) copy, distribute (including by framing any of the Services on any website), modify,
+            enhance, translate, reproduce, sell, resell, sublicense, rent, lease, crawl, or otherwise attempt to
+            exploit the Services or any data resulting therefrom; (ii) disassemble, decompile, reverse engineer,
+            or otherwise attempt to discover the source code; (iii) remove, obscure, or alter any copyright
+            notice, trademarks, or other proprietary rights notices affixed to or contained within or accessed
+            in conjunction with or through the Website or Services; (iv) make derivative works of the Services;
+            (v) modify another website so as to falsely imply that it is associated with the Services, Augurisk
+            or any other Augurisk services; or (vi) make the Site or Services or any part thereof available to
+            others in a service undertaking or outsourcing arrangement or for any other commercial time-sharing,
+            data processing or other third party use.<br>
+            Requests. Unless you currently subscribed to the “Enterprise” plan, you agree not to forward (i)
+            more than 10 requests per 1 second from one unique IP address, (ii) more than 10 simultaneous
+            inquiries from 1 User, or (iii) more than 3 simultaneous export inquiries.<br>
+            Programmatic Requests. Unless you are using the API, all automatic inquiries are prohibited, this
+            includes, without being limited to, the usage of crawling and scraping scripts.<br>
+            4.11 Testing or Special Access. If you are invited or provided with access to beta testing new tools
+            and resources, which are not made available to our users broadly (“closed beta”), you should not
+            rely on, nor expect, the continued availability of these resources and tools. Any such access to
+            beta test new resources and tools, if there is, is conditioned upon your agreement not to disclose
+            any information about these new resources and tools or your experience of using them to third
+            parties.<br><br>
+            4.12 Unregistration. You may terminate your Client User account at any time. Note that doing so
+            might delete all your data and information stored on Augurisk servers and we will bear no
+            responsibility for any resulting loss of data or information. All Service fees incurred prior to
+            unregistration will be due and owing until paid in full, such unregistration
+            notwithstanding.<br><br>
+            4.13 Assignment. A Client User may not transfer, assign, exchange, pool or barter any of its rights
+            or obligations regarding Client Under’s access to and use of the services or the Client User
+            account, unless expressly permitted by us in writing. Any violation of the foregoing restrictions is
+            grounds for immediate Client User account termination. For changes in access under corporate
+            subscriptions to the Services, we may require from you an explanation of changes in your
+            circumstances, along with confirmation of employment and other relevant documents and reasonable
+            information.<br><br>
+            4.14 Termination by Augurisk. We reserve the right to terminate any Client User account for abusive
+            or fraudulent activity, for failure to comply with these Terms, or for any other reason in our sole
+            discretion.<br><br>
+            If your User Account or any Augurisk Services or Third Party Services related to your User Account
+            are cancelled (whether at your request or at Augurisk’s discretion), it may cause or result in the
+            loss of certain content, features, or capacity of your User Account, including any User Content,
+            Projects data or other usage data retained therein (“Capacity Loss”). Augurisk shall not be liable
+            in any way for such Capacity Loss, or for saving a backup of your User Account, User Content or
+            Projects Data. Please also note that additional Fees may apply to re-activation of a User Account
+            and/or any Augurisk Services following their cancellation, as determined by Augurisk in its sole
+            discretion.<br>
+
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">5. FEES AND SETTLEMENT</h2>
+        </ion-text>
+        <ion-text>
+          <p>5.1 Service Fees. With respect to the paid Services, the Client User will be charged the fees set
+            forth in the relevant section on the Augurisk Site located at our pricing page or as otherwise
+            offered on the Site for a particular payment or subscription plan (the "Fees"). The Fees, unless
+            explicitly shown during the process of purchasing a subscription plan and following confirmation
+            thereof, are exclusive of value added tax and any additional or other taxes, charges or duties which
+            may be imposed with any and all payments made or due and shall, if applicable, be borne,
+            respectively registered and duly declared by Client User.<br>
+            5.2 Change in Fees. We may change the Fees and/or introduce new charges in addition to the Fees in
+            our sole discretion upon thirty (30) days’ prior written notice to the User. Notwithstanding the
+            foregoing, we may increase the Fees, immediately and with contemporaneous notice, in the event of
+            (a) any change in the services or fees of our third party service providers; (b) changes in the
+            Services which are made at your request; or (c) delays and/or other issues due to Client User
+            failure to fulfill Client User obligations or due to Client User request to delay work for any
+            reason; or (d) in the event of a change in our pricing structure. <br>
+            5.3. Payment. Any Fees shall be prepaid one month, one year or two years in advance, or as otherwise
+            offered on the Site for a particular subscription plan, at the option of the Client User by credit
+            card or another payment method accepted on the Website. All prepaid amounts and Service plans will
+            be reflected in the Client User account. Any bank fees and charges shall be borne solely by Client
+            User. When opting for a subscription, the Client will be billed every month by our payment
+            processor, until the Client cancels his subscription on the Subscription page.<br>
+            5.4 Credits. Any credits due to a Client User will be applied on the next invoice against amounts
+            then due. If there are no future invoices expected, Augurisk will issue a payment to Client User for
+            credits due.<br>
+            5.5 Promotional Giveaways. Occasionally we may offer promotional giveaways of the Services, subject
+            to the rules that are announced at the time of any such promotional event. Client Users shall bear
+            sole responsibility for any and all income tax consequences that may result from their winning any
+            such giveaway. Furthermore, if required by applicable laws, Client User agrees to submit to us duly
+            completed tax forms, to enable us to make all required filings with tax authorities.<br>
+            5.6 Refund policy. Our paid Services are provided on a prepaid basis. Client Users may discontinue
+            their use of any Services at any time in accordance with the instructions posted on the Site. The
+            date and time of any cancelation of paid Services shall be the date and time on which the Client
+            User completes the full cancelation process, or sends a cancellation request to our team by email.
+            We do not provide refunds for used or remaining credits.<br>
+            5.7 Abusive and/or repeated registrations or/and subscriptions for paid Services and cancellations,
+            followed by requests for refunds, by a Client User may, in our sole discretion, be deemed to be in
+            bad faith, and we reserve the right to withhold Service to any such offending Client User and refuse
+            any refund otherwise available to such Client User.<br>
+
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">6. OWNERSHIP AND INTELLECTUAL PROPERTY; USE OF TRADEMARKS</h2>
+        </ion-text>
+        <ion-text>
+          <p>6.1 All Rights Reserved. Client User acknowledges and agrees that all rights, title, and interest
+            to, any and all intellectual property rights of all types or nature whatsoever, including, without
+            limitation, patent, copyright, trademark, database rights as well as moral rights, know-how and
+            trade secrets (and any licenses in connection with any of the same), whether or not registered or
+            capable of registration, and whether subsisting in any specific country or countries or any other
+            part of the world, in the Services, the platform used to provide the Services (technology, hardware,
+            software, etc.), any code or software (SDK, API, etc.) which may be provided to Client User or for
+            Client User’s use subject to these Terms and any work products created and/or delivered herein and
+            related documentation (forming the Augurisk Website and Services) are and will remain solely and
+            exclusively the property of Augurisk, Augurisk licensors or affiliates. Client User is granted no
+            title or ownership rights in the Augurisk Website or Service. Client User’s right to use the Site,
+            Services and any part thereof is strictly limited to the provisions of these Terms and we reserve
+            all rights not expressly granted herein.<br>
+            6.2 Augurisk Trademark. Augurisk™ is a registered trademark. Other marks, graphics, icons, names and
+            logos used or displayed on or through the Site are trademarks, trade dress and/or service marks
+            ("Trademarks") of us and our affiliates and subsidiaries or otherwise are the property of their
+            respective owners, who may or may not be affiliated with, connected to, or sponsored by us and may
+            be subject to such third parties’ terms and conditions. Client User may not use any metatags or any
+            other “hidden text” utilizing any of the aforementioned trademarks, trade dress and/or service
+            trademarks without our and respective owner’s prior written permission. Client User’s right to use
+            the trademarks is strictly limited to the manner of use as instructed and approved by us, which
+            right may be revoked or changed at any time at our (or the respective owners’ or licensors’) sole
+            discretion. Client User will accordingly change or remove such display of materials immediately upon
+            request by us or the respective mark owners or licensors. Client User acknowledges and agrees that
+            Client User shall not contest the ownership of the trademarks on the Site for any reason. Client
+            User’s use or display of trademarks will terminate effective upon the termination of the Services,
+            suspension of the Services or upon notification by us or the respective owner or licensor to
+            discontinue such use or display.<br>
+            6.3 Blind Data. Notwithstanding anything to the contrary, Augurisk will be free (during and after
+            the term hereof) to, without any obligation to the Client User to collect, develop, create, extract,
+            compile, synthesize, analyze and commercialize statistics, benchmarks, measures and other
+            information based on “Aggregated Data.” “Aggregated Data” means Client User Data that is: (i)
+            anonymized by removing personal data or information; (ii) combined with the other data; and (iii)
+            presented in a way that does not reveal the Client User’s or any Client User’s identity.<br>
+            6.4 User’s Trademarks. Client User hereby grants us a worldwide, non-exclusive, unlimited and
+            royalty-free license to use Client User’s brands, names, logos, trademarks, trade names, and service
+            trademarks as used by Client User for informational and advertising purposes only.<br>
+            6.5 Feedback. Notwithstanding anything to the contrary, if the Client User or any of its employees
+            or contractors provide us with any ideas, suggestion(s), enhancement requests, feedback and/or
+            recommendation(s) regarding the Services, including without limitation, new and/or improved features
+            or functionality relating thereto (”Feedback”), Augurisk is free to use and disclose such Feedback
+            without any obligation to the Client User or such employees or contractors and to incorporate into
+            any existing or future products, services or features. Client User hereby assigns all of Client
+            User’s right, title, and interest in such idea, suggestion, comment, or feedback to Augurisk and
+            agrees that Augurisk will be free to use and implement same, without restriction or obligation of
+            any kind, without, however, any obligation to do so.<br>
+            IF ANY TERM OF THIS SECTION 6 CONFLICTS WITH ANY OTHER TERM CONTAINED IN THESE TERMS, SECTION 6
+            SHALL CONTROL. <br>
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">7. TERMINATION</h2>
+        </ion-text>
+        <ion-text>
+          <p>7.1 Termination Right. Either party may terminate the Services at any time. Client User shall
+            provide 30 days notice that Client User is terminating Client User’s access to the Services. <br>
+            7.2 Effect of Termination. Upon termination of the Services, all rights of the Client User in
+            connexion with the use of Site or Services shall terminate immediately.<br>
+            7.3 Survival. Upon any termination of the Services for any reason, all provisions regarding
+            indemnification, warranty, liability and limits thereon, and confidentiality and protection of
+            proprietary rights and trade secrets, and any provisions which expressly or by their nature are
+            required to survive such termination in order to achieve their purpose, shall so survive until it
+            shall no longer be necessary for them to survive in order to achieve their purpose.<br>
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">8. WARRANTY DISCLAIMER & LIMITATION OF LIABILITY</h2>
+        </ion-text>
+        <ion-text>
+          <p>8.1 Disclaimer. EXCEPT WHERE PROHIBITED BY LAW, THE SERVICES AND THE WEBSITE ARE PROVIDED “AS-IS”
+            AND “AS AVAILABLE” AND WE EXPRESSLY DISCLAIM ANY WARRANTIES AND CONDITIONS OF ANY KIND, WHETHER
+            EXPRESS OR IMPLIED, INCLUDING THE WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A
+            PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, ACCURACY, OR NON-INFRINGEMENT. WE MAKE NO WARRANTY THAT
+            THE SERVICES OR THE WEBSITE (A) WILL MEET YOUR REQUIREMENTS; (B) WILL BE AVAILABLE ON AN
+            UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE BASIS; OR (C) WILL BE ACCURATE, RELIABLE, FREE OF
+            VIRUSES OR OTHER HARMFUL CODE, COMPLETE, LEGAL, OR SAFE. WE FURTHER MAKE NO WARRANTIES OR
+            REPRESENTATIONS REGARDING THE ACCURACY OR COMPLETENESS OF THE CONTENT ON ANY SITES LINKED TO ON THE
+            WEBSITE. FURTHERMORE, UNDER NO CIRCUMSTANCES SHALL THE CONTENT RELATED TO RISK ASSESSMENTS ON THE
+            WEBSITE BE CONSIDERED ACCURATE.<br>
+            8.2 Geographic Restrictions. You understand that we cannot and do not guarantee or warrant that
+            files available for downloading from the internet or the Site will be free of viruses or other
+            destructive code. You are responsible for implementing sufficient procedures and checkpoints to
+            satisfy your particular requirements for anti-virus protection and accuracy of data input and
+            output, and for maintaining a means external to our Site and Services for any reconstruction of any
+            lost data. WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE
+            ATTACK, VIRUSES OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT,
+            COMPUTER PROGRAMS, DATA OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE SITE OR ANY SERVICES OR
+            ITEMS OBTAINED THROUGH THE SITE OR TO YOUR DOWNLOADING OF ANY MATERIAL POSTED ON IT, OR ON ANY SITE
+            LINKED TO IT.<br>
+            YOUR USE OF THE SITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE SITE IS AT YOUR OWN
+            RISK. THE SITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE SITE ARE PROVIDED ON AN
+            "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+            NEITHER AUGURISK NOR ANY PERSON ASSOCIATED WITH AUGURISK MAKES ANY WARRANTY OR REPRESENTATION WITH
+            RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE SITE.
+            WITHOUT LIMITING THE FOREGOING, NEITHER AUGURISK NOR ANYONE ASSOCIATED WITH AUGURISK REPRESENTS OR
+            WARRANTS THAT ITS SITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SITE WILL BE ACCURATE,
+            RELIABLE, ERROR-FREE OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVICES
+            OR THE SERVER THAT MAKES THESE AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE
+            ITEM OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SITE WILL OTHERWISE MEET YOUR NEEDS OR
+            EXPECTATIONS. <br>
+            AUGURISK HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR
+            OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND
+            FITNESS FOR PARTICULAR PURPOSE.<br>
+            THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE
+            LAW.<br>
+            <br>
+            8.3 Limitation of Liability. In no event shall Augurisk, its officers, directors, employees, or
+            agents, be liable to you or to any third party for any direct, indirect, incidental, special,
+            punitive, or consequential damages whatsoever arising from or related to either the use of the
+            Services or the Site. Our liability to you for any damages arising from the use of the Services or
+            the SIte, will at all times be limited to the greater of (a) fifty dollars ($50) or (b) amounts you
+            have paid to us in the prior 12 months (if any). The existence of more than one claim will not
+            enlarge this limit. The foregoing limitation of liability shall apply to the fullest extent
+            permitted by law in the applicable jurisdiction.<br>
+            8.4 Third Party Products and Services. Augurisk does not warrant, endorse, guarantee, or assume
+            responsibility for any product or service advertised or offered by a third party through the Site or
+            any hyperlinked website or featured in any banner or other advertising, and we will not be a party
+            to or in any way be responsible for monitoring any transaction between you and third-party providers
+            of products or services.<br>
+            8.5 Other Jurisdictions. We make no representations that the Services or the Site are appropriate or
+            available for use in all locations. Those who access or use the Services or the Site from
+            jurisdiction prohibiting such use, do so at their own risk and are responsible for compliance with
+            local law.<br>
+
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">9. INDEMNITY</h2>
+        </ion-text>
+        <ion-text>
+          <p>You agree to defend, hold harmless and indemnify Augurisk and its officers, directors, employees
+            and, agents, from and against any and all claims, damages, obligations, losses, liabilities, costs
+            or debt, and expenses (including but not limited to attorney’s fees) arising from: (a) your use of
+            and access to the Services and the Site; (b) your violation of any of these Terms; or (c) your
+            violation of any third party right, including without limitation any copyright, property, or privacy
+            right. This defense and indemnification obligation will survive the termination of your use of the
+            Services and the Site.
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">10. EXPORT RESTRICTIONS</h2>
+        </ion-text>
+        <ion-text>
+          <p>Exports, re-exports, and transfers of Augurisk services, including software, software source code,
+            technology, technical data, related technology, and the direct products thereof, including the
+            Website content and the Services (the "Augurisk Data") are subject to US export controls and
+            sanctions, the most important of which are administered by the Commerce Department’s Bureau of
+            Industry and Security ("BIS") under its Export Administration Regulations ("EAR"), the Treasury
+            Department’s Office of Foreign Assets Controls ("OFAC") under its Foreign Assets Control
+            Regulations, and other applicable export control laws and regulations of non-U.S. government
+            agencies. You agree to comply with all export laws and restrictions and regulations of any United
+            States or foreign agency or authority, and not to directly or indirectly provide or otherwise make
+            available the Augurisk Data in violation of any such restrictions, laws or regulations, or without
+            all necessary approvals, including, without limitation, for the development, design, manufacture or
+            production of nuclear, chemical or biological weapons of mass destruction nor will you use the
+            Augurisk Data for a military end-use or a military end-user in China, Russia or any other country
+            designated in EAR Supplement No. 1 to Part 740, Country Group D1. You may not access, download,
+            distribute, use, export, or re-export the Augurisk Data in violation of United States export laws or
+            regulations, or in violation of any other applicable laws or regulations. Augurisk Data may not be
+            downloaded or otherwise provided or made available, either directly or indirectly, (i) into Iran,
+            Libya, North Korea, Sudan, Myanmar, Syria or any other country subject to U.S. trade sanctions, to
+            individuals or entities controlled by such countries, or to nationals or residents of such countries
+            other than nationals who are lawfully admitted permanent residents of countries not subject to such
+            sanctions; or (ii) to anyone on the U.S. Treasury Department's list of Specially Designated
+            Nationals and Blocked Persons or the U.S. Commerce Department's Table of Denial Orders. By agreeing
+            to these Terms, you agree to the foregoing and represent and warrant that you are not located in,
+            under the control of, or a national or resident of any such country or on any such list and that you
+            will not share Augurisk Data with anyone whose status is described in items (i) and (ii) above.
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">11. GENERAL PROVISIONS</h2>
+        </ion-text>
+        <ion-text>
+          <p>
+            11.1 Assignment. These Terms, any part thereof or any rights or obligations under it may be assigned
+            by us without restriction or limitation, but may not be novated, assigned, outsourced or transferred
+            by you without our advance written consent. Any assignment or transfer in violation of the
+            aforementioned provisions shall be deemed null and void. Subject to the forgoing, these Terms shall
+            be binding upon and inure to the benefit of the parties hereto and their respective successors and
+            assigns.<br>
+            11.2 Electronic Notices. You agree to receive communications (“Electronic Notices”) from us in an
+            electronic form. Electronic notices will be delivered to your email address, which you used for
+            registration purposes, as it may be subsequently changed by you by written notice to us. All
+            communications in electronic format will be considered to be “in writing” and to have been received
+            on the day that we send them. You may not be able to change your email address after you register.
+            In case you require to change your email address, you may need to create a new account. We reserve
+            the right, but assume no obligation, to provide communications in paper format.<br>
+            11.3 Cas de Force Majeure. We shall not be liable for failing or delaying performance of our
+            obligations resulting from any condition beyond our reasonable control, including but not limited
+            to, use of third parties’ equipment or services, communications failure, governmental action, war,
+            acts of terrorism, earthquake, fire, flood or other acts of God, labor conditions, power failures,
+            and Internet disturbances.<br>
+            11.4 The Entire Agreement. These Terms, together with the Privacy Policy, shall constitute the
+            entire agreement between Augurisk and you concerning your use of the Website and the Services.
+            However, terms and conditions of some other Augurisk services and products, like our Affiliate
+            program, our Blog, our Webinars, and others, may impose additional terms, which may be found in the
+            terms and conditions for such services and products. These Terms also supersedes any conflicting
+            language contained in any applicable past or future purchase order regarding the subject matter of
+            these Terms.<br>
+            11.5 Languages. The language of these Terms is English, which prevails over any translations of it
+            to other languages, made by us and provided to you for your convenience, as applicable. The Service
+            is designed in the English language and its translations into other languages may contain
+            inaccuracies for which we shall not bear any responsibility; we suggest using the English version
+            and resorting to versions in other languages only for references and at your own risk. You also
+            agree to have all communications with us in English.<br>
+            11.6 Severability. All the provisions of these Terms are distinct and severable. If any provision of
+            these Terms (or part of any provision) is found by any court or other authority of competent
+            jurisdiction to be invalid, unenforceable or illegal, this shall not impair the operation of these
+            Terms or affect the other provisions which are valid.<br>
+            11.7 No Waiver. No failure or delay by a party to exercise any right or remedy provided under these
+            Terms or by law shall constitute a waiver of that (or any other) right or remedy, nor preclude or
+            restrict its further exercise. No single or partial exercise of such right or remedy shall preclude
+            or restrict the further exercise of that (or any other) right or remedy; and will not be construed
+            as a waiver of any subsequent breach or default under the same or any other provision of these
+            Terms.<br>
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">12. PRIVACY POLICY</h2>
+        </ion-text>
+        <ion-text>
+          <p>The Use of our Services is also governed by our Privacy Policy, the provisions of which are adopted
+            herein by reference. Hence, when there is a reference to these Terms, there also is a reference to
+            the Privacy Policy.
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">13. COPYRIGHTS</h2>
+        </ion-text>
+        <ion-text>
+          <p>Augurisk acts in accordance with its interpretation of the Digital Millennium Copyright Act
+            (“DMCA”). If you believe that your work has been copied or was otherwise used in a way that
+            constitutes copyright infringement, you may notify us of such infringement via this form, or
+            otherwise provide the following information in writing to our designated Copyright Agent: (1) the
+            contact details of the person authorized to act on behalf of the owner of the copyright; (2) a
+            description of the copyrighted work that you claim has been infringed; (3) a description of the
+            material that you claim to be infringing or to be the subject of infringing activity and that is to
+            be removed or access to which is to be disabled, and information sufficient to permit Augurisk to
+            locate the material (including URL address); (4) a statement that you have a good faith belief that
+            use of the material in the manner complained of is not authorized by the copyright owner, its agent,
+            or the law; and (5) a statement that the information in the notification is accurate and, under
+            penalty of perjury, that you are the copyright owner or are authorized to act on behalf of the owner
+            of a copyright that is allegedly infringed.
+            <br><br>
+            Augurisk’s Copyright Agent can be reached at the contact information contained within the NOTICES
+            article below.<br>
+            In the event that we receive notice regarding a copyright infringement related to your User Account,
+            it may cancel your User Account, terminate your account or remove any Content in Augurisk’s sole
+            discretion, with or without prior notice to the User. In such case, you may file a proper
+            counter-notice in accordance with Section 512 of the DMCA, in which you must include: (1) your full
+            name, address, phone number and physical or electronic signature; (2) identification of the material
+            and its location before removal; (3) a statement under penalty of perjury that the material was
+            removed by mistake or misidentification; (4) your consent to an appropriate judicial body; and (5)
+            any other information required under the relevant provisions of the DMCA. Any notices filed pursuant
+            to this Section 9 may be deemed accepted, applicable and compliant with the DMCA, or not, at
+            Augurisk’s sole reasonable discretion. Augurisk reserves the right to notify the person or entity
+            providing the infringement notice of such counter-notice and provide any details included therein.
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">14. NOTICES.</h2>
+        </ion-text>
+        <ion-text>
+          <p>All notices, requests, consents, claims, demands, waivers, and other communications under these
+            Terms (each, a “Notice”) must be in writing and to:<br>
+            <b>Augurisk, Inc.</b>, 2810 N Church St #56347<br>
+            Wilmington Delaware 19802-4447<br>
+            United States<br>
+            contact@augurisk.com.<br>
+          </p>
+        </ion-text>
+
+        <ion-text>
+          <h2 class="pb-30 pt-30">15. CONTACTS.</h2>
+        </ion-text>
+        <ion-text>
+          <p>We are always available to be reached by phone at +1-800-6930381, or by email at
+            contact@augurisk.com.<br>
+            Last updated: March 10th, 2020<br>
+
+          </p>
+        </ion-text>
+
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card *ngIf="currentPage=='privacy'">
+      <ion-card-header>
+        <ion-card-title>Privacy Policy</ion-card-title>
+        <ion-card-subtitle>Information about our use of Cookies</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="lead mb-50">Our website uses cookies to distinguish you from other users of our website.
+          This helps us to provide you with a good experience when you browse our website and also allows us
+          to improve our site. By continuing to browse the site, you are agreeing to our use of cookies.
+          <br><br>
+          A cookie is a small file of letters and numbers that we store on your browser or the hard drive of
+          your computer if you agree. Cookies contain information that is transferred to your computer’s hard
+          drive.
+          <br><br>
+          We may use the following cookies:
+
+          <ion-text>
+            <h2 class="mb-30 mt-30">Strictly necessary cookies.</h2>
+          </ion-text>
+        <p class="mb-50">These are cookies that are required for the operation of our website. They include,
+          for example, cookies that enable you to log into secure areas of our website, use a shopping cart or
+          make use of e-billing services.</p>
+
+        <h2 class="mb-30 mt-30">Analytical/performance cookies.</h2>
+        <p class="mb-50">They allow us to recognize and count the number of visitors and to see how visitors
+          move around our website when they are using it. This helps us to improve the way our website works,
+          for example, by ensuring that users are finding what they are looking for easily.</p>
+
+        <h2 class="mb-30 mt-30">Functionality cookies.</h2>
+        <p>These are used to recognize you when you return to our website. This enables us to personalize our
+          content for you, greet you by name and remember your preferences (for example, your choice of
+          language or region).</p>
+        <h2 class="mb-30 mt-30">Targeting cookies</h2>
+        <p>These cookies record your visit to our website, the pages you have visited and the links you have
+          followed. We will use this information to make our website and the advertising displayed on it more
+          relevant to your interests. We may also share this information with third parties for this purpose.
+        </p>
+        <p class="lead mb-50">Please note that third parties (including, for example, advertising networks and
+          providers of external services like web traffic analysis services) may also use cookies, over which
+          we have no control. These cookies are likely to be analytical/performance cookies or targeting
+          cookies.<br><br>
+
+          You block cookies by activating the setting on your browser that allows you to refuse the setting of
+          all or some cookies. However, if you use your browser settings to block all cookies (including
+          essential cookies) you may not be able to access all or parts of our site.<br><br>
+
+          Except for essential cookies, all other cookies will expire after 6 months.
+
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+
+
+</ion-content>

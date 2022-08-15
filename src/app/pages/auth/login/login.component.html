@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/auth/started"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card [hidden]="unconfirmed$ | async">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center pt-10">Augurisk Now Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" (keyup.enter)="submitForm()" novalidate>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+            <!-- Start: Notification Message Box -->
+            <ion-grid>
+              <ion-row class="ion-align-items-center">
+                <ion-col size="12" class="ion-text-center">
+                  <ion-chip *ngIf="notificationMessage$ | async as errorMessage" [color]="errorMessage.type">
+                    <ion-label [color]="errorMessage.type"> {{ errorMessage.message }}</ion-label>
+                  </ion-chip>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <!-- end: Notification Message Box -->
+
+            <ion-item>
+              <ion-label position="floating">Email address
+              </ion-label>
+              <ion-input name="email" formControlName="email" required type="text"></ion-input>
+            </ion-item>
+            <span color="danger" *ngIf="controlHasError(loginForm, 'email','required')" class="error-light ion-padding">
+              Email is required.
+            </span>
+            <span color="danger" *ngIf="controlHasError(loginForm, 'email', 'email')" class="error-light ion-padding">
+              Please type a correct email.
+            </span>
+
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input name="password" formControlName="password" required type="password"></ion-input>
+            </ion-item>
+            <span color="danger" *ngIf="controlHasError(loginForm, 'password','required')"
+              class="error-light ion-padding">
+              Password is required.
+            </span>
+            <span color="danger" *ngIf="controlHasError(loginForm, 'password','minlength')"
+              class="error-light ion-padding">
+              Please type a longer password.
+            </span>
+
+          </ion-list>
+
+          <div class="pt-30 pb-10">
+            <ion-button expand="block" color="primary" type="submit" class="ion-no-margin">
+              Login</ion-button>
+          </div>
+
+
+          <div class="flex-center"  class="pt-10 pb-10">
+            <ion-button (click)="loginWithFacebook()" color="facebook" expand="block" class="ion-no-margin"  >
+              <ion-icon name="logo-facebook"></ion-icon>
+              <span style="padding-left:7px; padding-top: 2px;">Login with Facebook</span>
+            </ion-button>
+          </div>
+
+          <p class="notice ion-text-center pt-10" color="medium">
+            Don't have an account? <a routerLink="/auth/register">Tap to signup</a>.
+          </p>
+          <p class="notice ion-text-center pt-10" color="medium">
+            Forgot your password? <a routerLink="/auth/forgot-password">Tap here</a>.
+          </p>
+        </form>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!(unconfirmed$ | async)">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Confirm your account</ion-card-title>
+      <ion-card-subtitle class="ion-text-center pt-10">A code was sent to {{ userEmail$ | async }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+
+        <!-- Start: Notification Message Box -->
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+              <ion-chip *ngIf="notificationMessage$ | async as errorMessage" [color]="errorMessage.type">
+                <ion-label [color]="errorMessage.type"> {{ errorMessage.message }}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <!-- end: Notification Message Box -->
+
+        <form [formGroup]="confirmationForm" (ngSubmit)="submitConfirmationForm()" novalidate>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+            <ion-item>
+              <ion-label position="floating">Confirmation Code <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input name="confirmationCode" formControlName="confirmationCode" required type="text"></ion-input>
+            </ion-item>
+            <span color="danger" *ngIf="controlHasError(confirmationForm, 'confirmationCode','required')"
+              class="error-light ion-padding">
+              Confirmation Code is required.
+            </span>
+
+          </ion-list>
+
+          <div class="pt-30 pb-10">
+            <ion-button expand="block" color="primary" type="submit" class="ion-no-margin">
+              Confirm Account</ion-button>
+          </div>
+
+
+          <div class="pt-10 pb-10">
+            <ion-button expand="block" (click)="resendConfirmationCode()" color="tertiary" class="ion-no-margin">
+              Resend Confirmation Code</ion-button>
+          </div>
+
+
+        </form>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

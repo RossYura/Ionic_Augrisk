@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center pt-10">Contact Us</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <form [formGroup]="contactForm" (ngSubmit)="submitForm()" novalidate>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            
+            <!-- Start: Notification Message Box -->
+            <ion-grid *ngIf="notificationMessage$ | async as errorMessage">
+              <ion-row class="ion-align-items-center">
+                <ion-col size="12" class="ion-text-center">
+                  <ion-chip [color]="errorMessage.type">
+                    <ion-label [color]="errorMessage.type"> {{ errorMessage.message }}</ion-label>
+                  </ion-chip>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <!-- end: Notification Message Box -->
+
+            <ion-item>
+              <ion-label position="floating">Your message
+              </ion-label>
+              <ion-textarea minlength="10" maxlength="1000" name="message" formControlName="message" required></ion-textarea>
+            </ion-item>
+            <span color="danger" *ngIf="controlHasError(contactForm, 'message','required')"
+              class="error-light ion-padding">
+              Message is required.
+            </span>
+            <span color="danger" *ngIf="controlHasError(contactForm, 'message', 'minlength')" class="error-light ion-padding">
+              Your message is too short.
+            </span>
+
+          </ion-list>
+
+          <div class="pt-30 pb-10">
+            <ion-button expand="block" color="primary" type="submit" class="ion-no-margin">
+              Send Message</ion-button>
+          </div>
+
+          <p class="notice ion-text-center pt-10" color="medium">
+            For more information, <a href="https://www.augurisk.com/?urm_source=augurisk-now&utm_medium=app&utm_campaign=contact" target="_blank">visit Augurisk.com</a>.
+          </p>
+        </form>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

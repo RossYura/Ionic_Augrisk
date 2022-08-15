@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/auth/started"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-card>
+      <ion-card-content style="padding-top: 0; margin-top:0;">
+        <div>
+          <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+              <ion-item>
+                <ion-label position="floating">Full Name <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input name="name" formControlName="name" required type="text"></ion-input>
+              </ion-item>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'name','required')" class="error-light ion-padding">
+                Your Full name is required.
+              </span>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'name','minlength')" class="error-light ion-padding">
+                Your name is too short.
+              </span>
+
+              <ion-item>
+                <ion-label position="floating">Email address <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input name="email" formControlName="email" required type="text"></ion-input>
+              </ion-item>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'email','required')" class="error-light ion-padding">
+                Email is required.
+              </span>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'email','email')" class="error-light ion-padding">
+                Please type a correct email.
+              </span>
+
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input name="password" formControlName="password" required type="password"></ion-input>
+              </ion-item>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'password','required')" class="error-light ion-padding">
+                Password is required.
+              </span>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'password','minlength')" class="error-light ion-padding">
+                Please type a longer password.
+              </span>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'password','PasswordStrength')" class="error-light ion-padding">
+                Please make sure your password is 6 characters or longer, has letters and numbers.
+              </span>
+
+              <ion-item>
+                <ion-label position="floating">Confirm password</ion-label>
+                <ion-input name="confirmPassword" formControlName="confirmPassword" required type="password"></ion-input>
+              </ion-item>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'confirmPassword','required')" class="error-light ion-padding">
+                Password confirmation is required.
+              </span>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'confirmPassword','ConfirmPassword')" class="error-light ion-padding">
+                Password and Password confirmation do not match.
+              </span>
+
+
+              <ion-item lines="none" text-wrap class="pt-10">
+                <ion-label text-wrap>I have read and agree to the Terms of service and the Privacy Policy.</ion-label>
+                <ion-checkbox formControlName="terms" name="terms" color="primary"></ion-checkbox>
+              </ion-item>
+              <ion-item lines="none" text-wrap>
+                <ion-label text-wrap>I'd like to receive the latest news and offers.</ion-label>
+                <ion-checkbox formControlName="optin" name="optin" color="primary"></ion-checkbox>
+              </ion-item>
+              <span color="danger" *ngIf="controlHasError(registerForm, 'terms','required')" class="error-light ion-padding">
+                You must agree to proceed.
+              </span>
+            </ion-list>
+
+            <div class="pt-30 pb-10">
+              <ion-button expand="block" color="primary" type="submit" class="ion-no-margin">
+                Create account</ion-button>
+            </div>
+
+            <p class="notice ion-text-center pt-10" color="medium">
+              Already have an account? <br> <a routerLink="/auth/login">Tap to login</a>.
+            </p>
+          </form>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
+

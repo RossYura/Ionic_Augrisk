@@ -1,0 +1,182 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Covid-19 Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list *ngIf="riskScore$ | async as riskScore">
+  <ion-item>
+    <ion-label>Your Risk Score: </ion-label>
+    <ion-badge [color]="returnRiskScoreColor(riskScore)" slot="end">{{riskScore}}%</ion-badge>
+  </ion-item>
+</ion-list>
+
+<ion-content>
+  <!-- Skeleton during loading -->
+  <div id="skeleton" *ngIf="(loadingData$ | async)">
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-thumbnail style="width:100%">
+        <ion-skeleton-text style="width:100%;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70px"></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div [hidden]="loadingData$ | async">
+
+    <!-- Map and buttons -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          New cases by State
+        </ion-card-title>
+        <ion-card-subtitle>New Covid-19 cases in US States during the past 10 days</ion-card-subtitle>
+      </ion-card-header>
+      <!-- map & buttons start -->
+      <div id="chartdiv"></div>
+      <div class="flex-center pt-20 pb-20">
+        <ion-button size="small" [disabled]="(nameOfColumnUsed == 'confirmed')" (click)="changeDisplay('confirmed')">
+          Confirmed Cases</ion-button>
+        &nbsp; &nbsp;
+        <ion-button size="small" [disabled]="(nameOfColumnUsed == 'death')" (click)="changeDisplay('death')">
+          Deaths</ion-button>
+      </div>
+      <!-- map & buttons end -->
+    </ion-card>
+    <!-- end: Map and buuttons-->
+
+    <!-- Chart: Cases by bounty for 10 days -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{'New cases in ' + this.countyName}}
+        </ion-card-title>
+        <ion-card-subtitle>{{'New Covid-19 cases in ' + this.countyName + ' for the past 10 days'}}</ion-card-subtitle>
+      </ion-card-header>
+      <div style="min-height:350px" id="covidCountyStateUsa"></div>
+    </ion-card>
+    <!-- end: Chart: Cases by bounty for 10 days -->
+
+    <!-- Chart: New cases by county over time for last 10 days -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Progression of new cases
+        </ion-card-title>
+        <ion-card-subtitle>{{'Progression of Covid-19 cases in  ' + this.countyName + ' during the past 10 days'}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <div id="confirmedCasesCountyAndState" style="min-height:350px"></div>
+    </ion-card>
+    <!-- end: Chart: New cases by county over time for last 10 days -->
+  </div>
+
+  <!-- Summary and Methodology -->
+  <ion-text>
+    <p class="tip ion-text-center mb-20">
+      Your score is relative to the situation bearing the highest risk in the U.S., which has 100%. Even if your location shows a low score, please protect yourself and the others by following
+      public safety recommendations, wash your hands often, avoid close contact when going outside, and use a mask.<br><br>
+      Source for county Cases and Deaths: <a href="" target="_blank">USA Facts</a>.<br>
+      Number of hospital beds: <a href="" target="_blank">Definitive Healthcare Data</a>.
+    </p>
+  </ion-text>
+
+</ion-content>

@@ -1,0 +1,261 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* General use classes */
+
+.notice { 
+  font-size: 12px !important;
+}
+
+.tip { 
+  margin: 5px 10px 5px 10px;
+  font-size: 12px !important;
+  color: #8c8c8c
+}
+
+.error-light {
+  font-size: 13px !important;
+  color: #ff4444;
+}
+.error-dark {
+  font-size: 12px !important;
+  color: #CC0000;
+}
+/* Content containers */
+
+#container {
+    padding: 10px 10px 10px 10px;
+}
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+}
+  
+  #container a {
+    text-decoration: none;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+  
+/* Padding and margin modifiers */
+.pb-10 {
+padding-bottom: 10px !important;
+}
+.pb-20 {
+padding-bottom: 20px !important;
+}
+.pb-30 {
+padding-bottom: 30px !important;
+}
+.pb-40 {
+padding-bottom: 40px !important;
+}
+.pb-50 {
+padding-bottom: 50px !important;
+}
+.pt-10 {
+padding-top: 10px !important;
+}
+.pt-20 {
+padding-top: 20px !important;
+}
+.pt-30 {
+padding-top: 30px !important;
+}
+.pt-40 {
+padding-top: 40px !important;
+}
+.pt-50 {
+padding-top: 50px !important;
+}
+.mb-10 {
+margin-bottom: 10px !important;
+}
+.mb-20 {
+margin-bottom: 20px !important;
+}
+.mb-30 {
+margin-bottom: 30px !important;
+}
+.mt-10 {
+margin-top: 10px !important;
+}
+.mt-20 {
+margin-top: 20px !important;
+}
+.mt-30 {
+margin-top: 30px !important;
+}
+
+/** Gradient background coloring */
+
+.theme-gradient {
+  background-image: linear-gradient(90deg, var(--theme-background-gradient-tint) 25%, var(--theme-background-gradient-shade) 100%) !important;
+}
+
+.blue-gradient {
+  background-image: linear-gradient(80deg, #64b5f6 15%, #448aff 100%) !important;
+}
+.red-gradient {
+  background-image: linear-gradient(80deg, #ef5350 30%, #d32f2f 100%) !important;
+}
+.indigo-gradient {
+  background-image: linear-gradient(80deg, #5c6bc0 30%, #3949ab 100%) !important;
+}
+.purple-gradient {
+  background-image: linear-gradient(80deg, #ab47bc 30%, #8e24aa 100%) !important;
+}
+
+/** Menu Styling */
+ion-menu ion-content {
+    --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  }
+  
+  ion-menu.md ion-content {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+  }
+  
+  ion-menu.md ion-list {
+    padding: 20px 0;
+  }
+  
+  ion-menu.md ion-note {
+    margin-bottom: 30px;
+  }
+  
+  ion-menu.md ion-list-header,
+  ion-menu.md ion-note {
+    padding-left: 10px;
+  }
+  /*
+  ion-menu.md ion-list#inbox-list {
+    border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  }*/
+  
+  ion-menu.md ion-list#inbox-list ion-list-header {
+    font-size: 22px;
+    font-weight: 600;
+  
+    min-height: 20px;
+  }
+  
+  ion-menu ion-list#inbox-list ion-menu-toggle ion-item {
+    border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  }
+  
+  ion-menu.md ion-item {
+    --padding-start: 10px;
+    --padding-end: 10px;
+    border-radius: 4px;
+  }
+  
+  ion-menu.md ion-item.selected {
+    --background: rgba(var(--ion-color-primary-rgb), 0.14);
+  }
+  
+  ion-menu.md ion-item.selected ion-icon {
+    color: var(--ion-color-primary);
+  }
+  
+  ion-menu.md ion-item ion-icon {
+    color: #616e7e;
+  }
+  
+  
+  ion-menu.ios ion-content {
+    --padding-bottom: 20px;
+  }
+  
+  ion-menu.ios ion-list {
+    padding: 20px 0 0 0;
+  }
+  
+  ion-menu.ios ion-note {
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+  
+  ion-menu.ios ion-item {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --min-height: 50px;
+  }
+  
+  ion-menu.ios ion-item.selected ion-icon {
+    color: var(--ion-color-primary);
+  }
+  
+  ion-menu.ios ion-item ion-icon {
+    font-size: 24px;
+    color: #73849a;
+  }
+  
+  
+  ion-menu.ios ion-list-header,
+  ion-menu.ios ion-note {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  ion-menu.ios ion-note {
+    margin-bottom: 8px;
+  }
+  
+  ion-note {
+    display: inline-block;
+    font-size: 16px;
+  
+    color: var(--ion-color-medium-shade);
+  }
+  
+  ion-item.selected {
+    --color: var(--ion-color-primary);
+  }
+  
+  .ion-color-facebook {
+    --ion-color-base: var(--ion-color-facebook) !important;
+    --ion-color-base-rgb: var(--ion-color-facebook-rgb) !important;
+    --ion-color-contrast: var(--ion-color-facebook-contrast) !important;
+    --ion-color-contrast-rgb: var(--ion-color-facebook-contrast-rgb) !important;
+    --ion-color-shade: var(--ion-color-facebook-shade) !important;
+    --ion-color-tint: var(--ion-color-facebook-tint) !important;
+    }

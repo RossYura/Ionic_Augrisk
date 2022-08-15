@@ -1,0 +1,53 @@
+/* Without setting height the slides will take up the height of the slide's content */
+.slides-container {
+  // height:400px
+}
+
+.logo-started {
+  margin: 40px auto 40px auto !important;
+}
+
+ion-slides {
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: block;
+  }
+
+  .swiper-slide h2 {
+    margin-top: 2.8rem;
+  }
+
+  .slider-img {
+    max-height: 50%;
+    max-width: 80%;
+    // margin: 60px 0 40px;
+    // pointer-events: none;
+  }
+
+  b {
+    font-weight: 500;
+  }
+/*
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ion-color-step-600, #60646b);
+  }
+
+  p b {
+    color: var(--ion-text-color, #000000);
+  }
+  */
+
+  @media (max-height: 640px) {
+    .slider-img {
+      height: 80px !important;
+      max-height: 80px !important;
+    }
+    .logo-started {
+      margin: 30px auto 20px auto !important;
+    }
+  }

@@ -1,0 +1,155 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Emergency Numbers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      Useful Emergency Numbers
+    </ion-list-header>
+
+    <ion-item [lines]="(show911information) ? 'none' : 'full'">
+      <ion-avatar slot="start">
+        <a (click)="clickToCallNumber('911')" href="javascript:;">
+          <ion-icon class="emergency-call-icon" name="call"></ion-icon>
+        </a>
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h1>911</h1>
+        Dial if you're facing a life-threatening emergency. <a (click)="toggle('911')" href="javascript:;">More
+          information</a>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full" *ngIf="show911information">
+      <ion-label>
+        List of emergencies for 911 include:
+        <ul>
+          <li>
+            Crimes in progress (not if already occurred)
+          </li>
+          <li>
+            Life-threatening situation
+          </li>
+          <li>
+            Fires or smoke in the building
+          </li>
+          <li>
+            Explosive Devices
+          </li>
+          <li>
+            Traffic accidents with injuries
+          </li>
+          <li>
+            Aircraft emergencies
+          </li>
+          <li>
+            Cliff rescues
+          </li>
+          <li>
+            Fuel or Hazardous chemical spills
+          </li>
+          <li>
+            Beach or water-related emergency
+          </li>
+        </ul>
+      </ion-label>
+    </ion-item>
+
+
+    <!-- Dynamic Police and Hospital features to be implemented
+    <ion-item [lines]="(showPoliceDep) ? 'none' : 'full'">
+      <ion-label text-wrap>
+        <h1>Police Department</h1>
+        Click to choose police department
+      </ion-label>
+      <ion-select [(ngModel)]="showPoliceDep" placeholder="Nearest" interface="action-sheet">
+        <ion-select-option value="f">Santa Cruz Police Dep. (33mi)</ion-select-option>
+        <ion-select-option value="m">Ted Ned Police Dep. (58mi)</ion-select-option>
+        <ion-select-option value="c">Brooklin 9-9 Police Dep (88mi)</ion-select-option>
+        <ion-select-option value="d">Great St. Police Dep (128mi)</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full" *ngIf="showPoliceDep">
+      <ion-avatar slot="start">
+        <a (click)="clickToCallNumber(911)" href="javascript:;">
+          <ion-icon class="emergency-call-icon" name="call"></ion-icon>
+        </a>
+      </ion-avatar>
+      <ion-label>
+        <h1>Ted Ned Police Dep. </h1>
+        <h2>111-222-333-444</h2>
+        <p>32 Ned Street, California, 20000</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item [lines]="(showHospital) ? 'none' : 'full'">
+      <ion-label text-wrap>
+        <h1>Nearest Hospital</h1>
+        Click to choose nearby Hospital
+      </ion-label>
+      <ion-select [(ngModel)]="showHospital" placeholder="Nearest" interface="action-sheet">
+        <ion-select-option value="f">Santa Cruz Hospital (33mi)</ion-select-option>
+        <ion-select-option value="m">Ted Ned Hospital (58mi)</ion-select-option>
+        <ion-select-option value="c">Brooklin 9-9 Hospital (88mi)</ion-select-option>
+        <ion-select-option value="d">Great St. Hospital (128mi)</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full" *ngIf="showHospital">
+      <ion-avatar slot="start">
+        <a (click)="clickToCallNumber(911)" href="javascript:;">
+          <ion-icon class="emergency-call-icon" name="call"></ion-icon>
+        </a>
+      </ion-avatar>
+      <ion-label>
+        <h1>Santa Cruz Hospital</h1>
+        <h2>111-222-333-444</h2>
+        <p>32 Ned Street, California, 20000</p>
+      </ion-label>
+    </ion-item>
+
+    -->
+
+
+    <ion-item lines="full">
+      <ion-avatar slot="start">
+        <a (click)="clickToCallNumber('1-800-222-1222')" href="javascript:;">
+          <ion-icon class="emergency-call-icon" name="call"></ion-icon>
+        </a>
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h1>Poison Control</h1>
+        <h2>1-800-222-1222</h2>
+        Contact Poison Control if you swallow or come in contact with a substance that might be poisonous. In case of a
+        collapse, seizure, or trouble breathing, call 911 right away.
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar slot="start">
+        <a (click)="clickToCallNumber('1-888-426-4435')" href="javascript:;">
+          <ion-icon class="emergency-call-icon" name="call"></ion-icon>
+        </a>
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h1>Animal Poison Control</h1>
+        <h2>1-888-426-4435</h2>
+        Contact the Animal Poison Control Center for any animal poison-related emergency, or if you think your pet may
+        have ingested a potentially poisonous substance.
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
